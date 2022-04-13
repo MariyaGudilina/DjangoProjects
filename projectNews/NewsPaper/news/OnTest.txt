@@ -1,0 +1,92 @@
+
+from models import *
+
+# Авторы -1
+user1 = User.objects.create_user(username='Masha')
+user2 = User.objects.create_user(username='Diana')
+Author.objects.create(authorUser=user1)
+Author.objects.create(authorUser=user2)
+
+# Категории -2
+Category.objects.create(name='IT')
+Category.objects.create(name='Game')
+Category.objects.create(name='Equipment')
+Category.objects.create(name='Life')
+
+
+au1 = Author.objects.get(id=1)
+au2 = Author.objects.get(id=2)
+
+#Статьи/Новости -3
+Post.objects.create(author=au1, categoryType='AR', title='firstArticle', content='bigText')
+Post.objects.create(author=au1, categoryType='NW', title='firstNew', content='someText')
+Post.objects.create(author=au2, categoryType='AR', title='secondArticle', content='bigText')
+
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=1))
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=2))
+Post.objects.get(id=3).postCategory.add(Category.objects.get(id=3))
+Post.objects.get(id=2).postCategory.add(Category.objects.get(id=4))
+
+#Комментарии -4
+Comment.objects.create(commentPost=Post.objects.get(id=1), commentUser=Author.objects.get(id=1).authorUser, text='anyText1')
+Comment.objects.create(commentPost=Post.objects.get(id=2), commentUser=Author.objects.get(id=1).authorUser, text='anyText2')
+Comment.objects.create(commentPost=Post.objects.get(id=2), commentUser=Author.objects.get(id=2).authorUser, text='anyText3')
+Comment.objects.create(commentPost=Post.objects.get(id=3), commentUser=Author.objects.get(id=2).authorUser, text='anyText4')
+#7
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+
+Comment.objects.get(id=2).like()
+Comment.objects.get(id=2).dislike()
+Comment.objects.get(id=2).dislike()
+Comment.objects.get(id=3).dislike()
+
+Post.objects.get(id=1).dislike()
+Post.objects.get(id=2).dislike()
+Post.objects.get(id=3).like()
+
+#8
+a1=Author.objects.get(id=1)
+a1.update_rating()
+a1.rating
+-4
+
+a2=Author.objects.get(id=2)
+a2.update_rating()
+a2.rating
+
+#9
+a = Author.objects.order_by('-rating')[:1]
+a[0].rating
+2
+a[0].authorUser.username
+'Diana'
+
+# 10
+postLike = Post.objects.order_by('-rating')[:1]
+postLike[0].rating
+1
+postLike[0].release_date
+datetime.datetime(2022, 4, 13, 13, 34, 45, 574267, tzinfo=datetime.timezone.utc)
+postLike[0].author.authorUser.username
+'Diana'
+postLike[0].title
+'secondArticle'
+postLike[0].preview()
+'bigText...'
+
+# 11
+coms = Comment.objects.all()
+for i in coms:
+...     str(i.dateCreation.ctime())+" Имя " + i.commentUser.username + "  " + str(i.rating) +"  "+ i.text
+...
+'Wed Apr 13 13:51:35 2022 Имя Masha  3  anyText1'
+'Wed Apr 13 13:52:40 2022 Имя Masha  -1  anyText2'
+'Wed Apr 13 13:53:31 2022 Имя Diana  -1  anyText3'
+'Wed Apr 13 13:55:35 2022 Имя Diana  0  anyText4'
+
+
+
+
+
