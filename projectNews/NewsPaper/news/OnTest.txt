@@ -22,7 +22,6 @@ Post.objects.create(author=au1, categoryType='AR', title='firstArticle', content
 Post.objects.create(author=au1, categoryType='NW', title='firstNew', content='someText')
 Post.objects.create(author=au2, categoryType='AR', title='secondArticle', content='bigText')
 
-Post.objects.get(id=1).postCategory.add(Category.objects.get(id=1))
 Post.objects.get(id=1).postCategory.add(Category.objects.get(id=2))
 Post.objects.get(id=3).postCategory.add(Category.objects.get(id=3))
 Post.objects.get(id=2).postCategory.add(Category.objects.get(id=4))

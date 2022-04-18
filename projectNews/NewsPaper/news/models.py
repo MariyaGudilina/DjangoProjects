@@ -37,6 +37,7 @@ class Post(models.Model):
     title = models.CharField(max_length=128, default="Название статьи")
     content = models.TextField()
     rating = models.SmallIntegerField(default=0)
+
     def like(self):
         self.rating += 1
         self.save()
@@ -47,6 +48,9 @@ class Post(models.Model):
 
     def preview(self):
         return self.content[0:123] + '...'
+
+    def __str__(self):
+        return self.title
 
 
 class Category(models.Model):
@@ -72,3 +76,4 @@ class Comment(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
+

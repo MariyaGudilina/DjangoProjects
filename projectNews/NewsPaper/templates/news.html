@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+</head>
+{% block content %}
+<h1>Все новости</h1>
+<h2>-----------------------------------------------------------</h2>
+    {% for post in posts %}
+    <i><h1>*</h1>{{ post.title }}</i>
+    <p></p>
+    {% endfor %}
+<i>{{ post }}</i>
+{% endblock content %}
+
