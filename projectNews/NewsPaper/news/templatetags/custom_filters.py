@@ -13,7 +13,7 @@ def censor(value):
    
    """
    for word in badWords:
-      value = value.replace(word, word[:1]+'*' * len(word))
+      value = value.replace(word, word[:1]+'*' * (len(word)-1))
 
 
 
