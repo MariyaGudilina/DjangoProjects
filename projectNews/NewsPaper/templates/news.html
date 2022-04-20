@@ -1,15 +1,24 @@
 {% extends 'flatpages/default.html' %}
+{% load custom_filters %}
 <head>
     <meta charset="UTF-8">
-    <title>Новости</title>
+    <title>
+        {% block title %}
+        Все новости
+        {% endblock title %}
+    </title>
+
 </head>
 {% block content %}
-<h1>Все новости</h1>
+<h1>Все новости ( {{ posts|length}} ) </h1>
 <h2>-----------------------------------------------------------</h2>
+
     {% for post in posts %}
-    <i><h1>*</h1>{{ post.title }}</i>
-    <p></p>
+
+    <i><h1>*</h1><h4>{{ post.title|censor }}<a href="/news/{{ post.id }}"> Нажми меня </a> </h4></i>
+    <a>{{ post.ti|date:'M d Y' }}</a><p></p>
+    <a>{{ post.content|truncatewords:20|censor}}</a><p></p>
     {% endfor %}
-<i>{{ post }}</i>
+
 {% endblock content %}
 

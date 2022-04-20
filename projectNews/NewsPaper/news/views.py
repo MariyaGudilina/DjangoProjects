@@ -9,7 +9,7 @@ from pprint import pprint
 
 class NewsList(ListView):
     model = Post
-    ordering = 'title'
+    ordering = '-ti'
     template_name = 'news.html'
     context_object_name = 'posts'
 

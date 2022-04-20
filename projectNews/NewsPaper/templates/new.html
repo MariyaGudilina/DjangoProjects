@@ -1,12 +1,16 @@
 {% extends 'flatpages/default.html' %}
-
-<!-- Название у нас будет Product -->
+{% load custom_tags %}
+{% load custom_filters %}
+<!-- Название-->
 {% block title %}
-Post
+{{ new.title }}
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
 {% block content %}
-<h1>{{ new }}</h1>
+<h4>{{ new.title|censor }}</h4>
+<h5>{{ new.ti|date:'d.m.y' }}</h5>
+<!--<h4>{% current_time '%d.%m.%y' %}</h4>-->
+<i>{{ new.content|censor}}</i>
 {% endblock content %}
 

@@ -5,7 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>One Page Wonder - Start Bootstrap Template</title>
+        <title>
+            {% block title %}
+            {{ flatpage.title }}
+            {% endblock title %}
+        </title>
 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -46,10 +50,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="/news/">Новости</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/news/1">Одна новость, пока так</a>
-                                    </li>
-
                                 </ul>
                             </div>
                         </div>
