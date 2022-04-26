@@ -1,5 +1,4 @@
 venv/
 pythonProject/
 .env
-db.sqlite3
 .idea/
