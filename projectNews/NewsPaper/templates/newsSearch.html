@@ -1,0 +1,27 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        Все новости
+        {% endblock title %}
+    </title>
+
+</head>
+{% block content %}
+<h1>Поиск новостей ( {{ posts|length}} ) </h1>
+<h2>-----------------------------------------------------------</h2>
+<form action="" method="get">
+    {{filterset.form.as_p }}
+    <input type="submit" value="Найти">
+</form>
+
+    {% for post in posts %}
+
+    <i><h1>*</h1><h4>{{ post.title|censor }}<a href="/news/{{ post.id }}"> Нажми меня </a> </h4></i>
+    <a>{{ post.ti|date:'M d Y' }}</a><p></p>
+    <a>{{ post.content|truncatewords:20|censor}}</a><p></p>
+    {% endfor %}
+
+{% endblock content %}

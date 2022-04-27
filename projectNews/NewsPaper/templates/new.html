@@ -10,7 +10,11 @@
 {% block content %}
 <h4>{{ new.title|censor }}</h4>
 <h5>{{ new.ti|date:'d.m.y' }}</h5>
+<div style="background:#ccc; color:red">
+<a href="/news/{{ new.id }}/edit/">Редактировать</a> <a href="/news/{{ new.id }}/delete/"> Удалить </a><p></p>
+</div>
 <!--<h4>{% current_time '%d.%m.%y' %}</h4>-->
 <i>{{ new.content|censor}}</i>
+
 {% endblock content %}
 
