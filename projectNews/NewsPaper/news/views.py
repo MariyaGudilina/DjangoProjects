@@ -14,6 +14,7 @@ from .filters import PostFilter, ArticlesFilter
 from .forms import NewForm
 
 
+# Все новости
 class NewsList(ListView):
     model = Post
     ordering = '-ti'
@@ -29,30 +30,13 @@ class NewsList(ListView):
         return context
 
 
-
+# Хочу отфильтровать только по статье, чтобы потом сделать навигацию. Без ввода пользователя
 def articles_list(request):
-    filter = ArticlesFilter(request.GET, queryset=Post.objects.all())
-    return render(request, 'articles.html',{'filter': filter})
+    filter_categoryType = ArticlesFilter(request.GET, queryset=Post.objects.all())
+    return render(request, 'articles.html', {'filter': filter_categoryType})
 
 
-class ArticlesListSearch(ListView):
-    model = Post
-    ordering = '-ti'
-    template_name = 'articles.html'
-    context_object_name = 'posts'
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        self.filterset = ArticlesFilter(self.request.GET, queryset)
-        return self.filterset.qs
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['time_now'] = datetime.utcnow()
-        context['filterset'] = self.filterset
-        return context
-
-
+# Поиск с формой
 class PostListSearch(ListView):
     model = Post
     ordering = '-ti'
@@ -72,6 +56,7 @@ class PostListSearch(ListView):
         return context
 
 
+# Одна новость
 class NewsDetail(DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Post
@@ -81,6 +66,7 @@ class NewsDetail(DetailView):
     context_object_name = 'new'
 
 
+# Создать новость
 def create_news(request):
     form = NewForm()
     if request.method == 'POST':
@@ -97,6 +83,7 @@ def create_news(request):
     return render(request, 'new_edit.html', {'form': form})
 
 
+# Создать статью
 def create_news1(request):
     form = NewForm()
     if request.method == 'POST':

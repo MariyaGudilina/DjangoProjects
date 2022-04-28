@@ -3,6 +3,7 @@ from .models import Post
 from django.forms import DateInput
 
 
+# Фильтр для поиска с формой
 class PostFilter(FilterSet):
     ti = DateFilter(
         lookup_expr='gt',
@@ -21,15 +22,12 @@ class PostFilter(FilterSet):
         }
 
 
-
+# Нужен простой фильтр, как задать без формы
 class ArticlesFilter(FilterSet):
-    categoryType = CharFilter(method='my_custom')
+    categoryType = CharFilter(lookup_expr='iexact', method='my_published')
 
     class Meta:
         model = Post
         fields = ['categoryType']
 
-    def my_custom(self, queryset, name, value):
-        return queryset.filter(**{
-            name: value,
-        })
+
