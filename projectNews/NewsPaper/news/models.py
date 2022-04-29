@@ -25,6 +25,7 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.authorUser}'
 
+
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
     NEWS = 'NW'
@@ -33,7 +34,7 @@ class Post(models.Model):
         ('NW', 'Новость'),
         ('AR', 'Статья'),
     )
-    categoryType = models.CharField(max_length=2, choices=CATEGORY_CHOICES)
+    categoryType = models.CharField(max_length=2, choices=CATEGORY_CHOICES, default='AR')
     ti = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     postCategory = models.ManyToManyField('Category', through='PostCategory', verbose_name='Категория')
 

@@ -33,7 +33,27 @@ class NewsList(ListView):
 # Хочу отфильтровать только по статье, чтобы потом сделать навигацию. Без ввода пользователя
 def articles_list(request):
     filter_categoryType = ArticlesFilter(request.GET, queryset=Post.objects.all())
-    return render(request, 'articles.html', {'filter': filter_categoryType})
+    context = render(request, 'articles.html', {'filter': filter_categoryType})
+    return context
+
+
+class ArticlesListSearch(ListView):
+    model = Post
+    ordering = '-ti'
+    template_name = 'articles.html'
+    context_object_name = 'articles'
+
+    # Переопределяем функцию списка новостей
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = ArticlesFilter(self.request.GET, queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['time_now'] = datetime.utcnow()
+        context['filterset'] = self.filterset
+        return context
 
 
 # Поиск с формой
@@ -58,12 +78,16 @@ class PostListSearch(ListView):
 
 # Одна новость
 class NewsDetail(DetailView):
-    # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Post
-    # Используем другой шаблон — product.html
     template_name = 'new.html'
-    # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'new'
+
+
+# Одна статья
+class ArticleDetail(DetailView):
+    model = Post
+    template_name = 'article.html'
+    context_object_name = 'article'
 
 
 # Создать новость
@@ -110,3 +134,15 @@ class NewDelete(DeleteView):
     model = Post
     template_name = 'new_delete.html'
     success_url = reverse_lazy('news_list')
+
+
+class ArticleUpdate(UpdateView):
+    form_class = NewForm
+    model = Post
+    template_name = 'article_edit.html'
+
+
+class ArticleDelete(DeleteView):
+    model = Post
+    template_name = 'article_delete.html'
+    success_url = reverse_lazy('articles_list')

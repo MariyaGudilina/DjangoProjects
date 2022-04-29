@@ -11,37 +11,17 @@
 
 </head>
 {% block content %}
-<div style="color:white;background:#DB8870">
-   {% if page_obj.has_previous %}
-       <a href="?{% url_replace page=1 %}">1</a>
-       {% if page_obj.previous_page_number != 1 %}
-           ...
-           <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
-       {% endif %}
-   {% endif %}
 
-   {# Информация о текущей странице #}
-   {{ page_obj.number }}
 
-   {# Информация о следующих страницах #}
-   {% if page_obj.has_next %}
-       <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
-       {% if paginator.num_pages != page_obj.next_page_number %}
-           ...
-           <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
-       {% endif %}
-   {% endif %}
-</div>
-
-<h1>Статьи ({{posts|length}} ) </h1>
+<h1>Статьи ({{articles|length}} ) </h1>
 <!--<h1>Все новости ({{posts|length}} ) </h1>-->
 <h2>-----------------------------------------------------------</h2>
 
-    {% for post in posts %}
+    {% for post in articles %}
 
     <i>
         <h1>*</h1>
-        <h4>{{ post.title |censor }}<a href="/news/{{ post.id }}"> Нажми меня </a> </h4>
+        <h4>{{ post.title |censor }}<a href="/articles/{{ post.id }}"> Нажми меня </a> </h4>
     </i>
     <a>{{ post.ti|date:'M d Y' }}</a><p></p>
     <a>{{ post.content |truncatewords:20|censor}}</a>

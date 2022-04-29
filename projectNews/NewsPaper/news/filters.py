@@ -24,10 +24,11 @@ class PostFilter(FilterSet):
 
 # Нужен простой фильтр, как задать без формы
 class ArticlesFilter(FilterSet):
-    categoryType = CharFilter(lookup_expr='iexact', method='my_published')
 
     class Meta:
         model = Post
-        fields = ['categoryType']
+        fields = {
+            'categoryType': ['exact'],
+        }
 
 
