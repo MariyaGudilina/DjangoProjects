@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import NewsList, PostListSearch, NewDelete
+from .views import NewsList, PostListSearch, NewDelete, UserTemplate
 from .views import NewsDetail, create_news, NewUpdate
 
 

@@ -27,7 +27,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
             <div class="container px-5">
-                <a class="navbar-brand" href="#page-top">Мария Гудилина</a>
+                <a class="navbar-brand" href="#page-top"> {{request.user.username}}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -41,12 +41,9 @@
                                 </button>
                             <div class="collapse navbar-collapse" >
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="/default/">Home
-                                            <span class="sr-only">(current)</span>
-                                        </a>
-                                    </li>
-
+                                   <!-- <li class="nav-item">
+                                        <a class="nav-link" href="/sign/user-detail/">Home</a>
+                                    </li>-->
                                     <li class="nav-item">
                                         <a class="nav-link" href="/news/">Все Новости</a>
                                     </li>
@@ -63,6 +60,12 @@
                                         <a class="nav-link" href="/articles/create/">Написать статью</a>
                                     </li>
 
+                                    <button> <a href="/sign/logout/">Выйти</a> </button>
+                                    <button> <a href="/accounts/login/">Войти</a> </button>
+
+                                    {% if is_not_authors %}
+                                        <button> <a href="/sign/upgrade/"> Стать автором </a> </button>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>

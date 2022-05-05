@@ -1,11 +1,14 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 from datetime import datetime
 
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
 from .models import Post
 from .models import Category
 from pprint import pprint
@@ -15,7 +18,7 @@ from .forms import NewForm
 
 
 # Все новости
-class NewsList(ListView):
+class NewsList(LoginRequiredMixin, ListView):
     model = Post
     ordering = '-ti'
     template_name = 'news.html'
@@ -26,7 +29,7 @@ class NewsList(ListView):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
         context['next_sale'] = None
-        pprint(context)
+        context['is_not_authors'] = not self.request.user.groups.filter(name='authors').exists()
         return context
 
 
@@ -37,7 +40,7 @@ def articles_list(request):
     return context
 
 
-class ArticlesListSearch(ListView):
+class ArticlesListSearch(LoginRequiredMixin, ListView):
     model = Post
     ordering = '-ti'
     template_name = 'articles.html'
@@ -53,11 +56,12 @@ class ArticlesListSearch(ListView):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
+        context['is_not_authors'] = not self.request.user.groups.filter(name='authors').exists()
         return context
 
 
 # Поиск с формой
-class PostListSearch(ListView):
+class PostListSearch(LoginRequiredMixin, ListView):
     model = Post
     ordering = '-ti'
     template_name = 'newsSearch.html'
@@ -73,76 +77,108 @@ class PostListSearch(ListView):
         context = super().get_context_data(**kwargs)
         context['time_now'] = datetime.utcnow()
         context['filterset'] = self.filterset
+        context['is_not_authors'] = not self.request.user.groups.filter(name='authors').exists()
         return context
 
 
 # Одна новость
-class NewsDetail(DetailView):
+class NewsDetail(LoginRequiredMixin, DetailView):
     model = Post
     template_name = 'new.html'
     context_object_name = 'new'
 
 
 # Одна статья
-class ArticleDetail(DetailView):
+class ArticleDetail(LoginRequiredMixin, DetailView):
     model = Post
     template_name = 'article.html'
     context_object_name = 'article'
 
 
 # Создать новость
+@permission_required('news.add_post')
 def create_news(request):
-    form = NewForm()
-    if request.method == 'POST':
+    current_user = request.user
 
-        form = NewForm(request.POST)
+    if current_user.is_authenticated:
+        form = NewForm()
+        if request.method == 'POST':
 
-        if form.is_valid():
-            categoryType = form.save(commit=False)
-            categoryType.categoryType = 'NW'
-            categoryType.save()
+            form = NewForm(request.POST)
 
-            return HttpResponseRedirect('/news/')
+            if form.is_valid():
+                categoryType = form.save(commit=False)
+                categoryType.categoryType = 'NW'
+                categoryType.save()
 
-    return render(request, 'new_edit.html', {'form': form})
+                return HttpResponseRedirect('/news/')
+
+        return render(request, 'new_edit.html', {'form': form})
+
+    else:
+        return HttpResponseRedirect('/news/')
 
 
 # Создать статью
+@permission_required('news.add_post')
 def create_news1(request):
-    form = NewForm()
-    if request.method == 'POST':
+    current_user = request.user
+    if current_user.is_authenticated:
+        form = NewForm()
+        if request.method == 'POST':
 
-        form = NewForm(request.POST)
+            form = NewForm(request.POST)
 
-        if form.is_valid():
-            categoryType = form.save(commit=False)
-            categoryType.categoryType = 'AR'
-            categoryType.save()
+            if form.is_valid():
+                categoryType = form.save(commit=False)
+                categoryType.categoryType = 'AR'
+                categoryType.save()
 
-            return HttpResponseRedirect('/news/')
+                return HttpResponseRedirect('/news/')
 
-    return render(request, 'article_edit.html', {'form': form})
+        return render(request, 'article_edit.html', {'form': form})
+
+    else:
+        return HttpResponseRedirect('/news/')
 
 
-class NewUpdate(UpdateView):
+class NewUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = NewForm
     model = Post
     template_name = 'new_edit.html'
 
 
-class NewDelete(DeleteView):
+class NewDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'new_delete.html'
     success_url = reverse_lazy('news_list')
 
 
-class ArticleUpdate(UpdateView):
+class ArticleUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = NewForm
     model = Post
     template_name = 'article_edit.html'
 
 
-class ArticleDelete(DeleteView):
+class ArticleDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post')
     model = Post
     template_name = 'article_delete.html'
     success_url = reverse_lazy('articles_list')
+
+
+class UserTemplate(LoginRequiredMixin, TemplateView):
+    template_name = 'flatpages/default.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_authors'] = not self.request.user.groups.filter(name='authors').exists()
+        return context
+
+
+
+
+
