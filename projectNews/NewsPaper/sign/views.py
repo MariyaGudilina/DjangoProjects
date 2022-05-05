@@ -7,7 +7,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.contrib.auth.models import User
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import BaseRegisterForm
 from django.shortcuts import redirect
 from django.contrib.auth.models import Group
@@ -29,8 +29,13 @@ def upgrade_me(request):
         return HttpResponseRedirect('/news/')
 
 
-class UserDetail(LoginRequiredMixin, DetailView):
+class UserDetail(LoginRequiredMixin, UpdateView):
     model = User
     template_name = 'sign/userDetail.html'
-    context_object_name = 'user'
+    form_class = BaseRegisterForm
+    success_url = '/news/'
+
+    def get_object(self, **kwargs):
+        return self.request.user
+
 
