@@ -20,32 +20,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-@receiver(post_save, sender=Post)
-def post(sender, instance, *args, **kwargs):
-    postCategory = instance.postCategory.all()
-    print(instance)
-    print(postCategory)
-    for categoryCurrent in postCategory:
-        users = Category.objects.filter(pk=categoryCurrent.id).values("subscribers")
-        for i in users:
-            send_mail(
-                subject=f"{instance.title}",
-                message=f"Здравствуй, {User.objects.get(pk=i['subscribers']).username}."
-                f" Новая статья в твоём любимом разделе! \n Заголовок статьи: {instance.title} \n"
-                f" Текст статьи: {instance.content[:50]}",
-                from_email='marija.utochkina@yandex.ru',
-                recipient_list=[User.objects.get(pk=i['subscribers']).email],
-            )
-
-    return redirect('/news/')
-
-
 class CategoryList(LoginRequiredMixin, ListView):
     model = Category
     ordering = 'name'
     template_name = 'category.html'
     context_object_name = 'category'
-
 
 
 @login_required
@@ -156,7 +135,9 @@ def create_news(request):
                 if current_user in users:
                     send_mail(
                         subject=f'Hello, {current_user.username} . New article in your favorite section!».',
-                        message=f'{text[:50]}',
+                        message=f'{text[:50]} \n'
+                                f' Ссылка http://127.0.0.1:8000/news/{categoryType.id}',
+
                         from_email='marija.utochkina@yandex.ru',
                         recipient_list=[mail],
                     )
