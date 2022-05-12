@@ -22,10 +22,22 @@ ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
+EMAIL_USE_SSL = True
+# SECURITY WARNING: keep the secret key used in production secret!
 load_dotenv()
 env_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path=env_path)
 SECRET_KEY = os.getenv("SECRET_KEY")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = 'marija.utochkina@yandex.ru'
+
+SERVER_EMAIL = 'marija.utochkina@yandex.ru'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -34,9 +46,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1']
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
 
 # Application definition
 
@@ -47,7 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news',
+    'news.apps.NewsConfig',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django_filters',
