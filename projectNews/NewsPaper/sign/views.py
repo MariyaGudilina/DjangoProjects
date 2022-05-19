@@ -1,8 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-
-# Create your views here.
 
 # Create your views here.
 from django.contrib.auth.models import User
@@ -16,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 #import sys
 #sys.path.append('..')
 
-#from ..news.models import Author
+from news.models import Author
 
 
 class BaseRegisterView(CreateView):
@@ -31,7 +28,7 @@ def upgrade_me(request):
     premium_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
         premium_group.user_set.add(user)
-#        Author.objects.create(authorUser=user)
+        Author.objects.create(authorUser=user)
         return HttpResponseRedirect('/news/')
 
 

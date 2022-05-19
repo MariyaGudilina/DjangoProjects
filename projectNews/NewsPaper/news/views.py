@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required, login_required
@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView, TemplateView
 from .models import Post
 from .models import Category
@@ -18,6 +19,7 @@ from .filters import PostFilter, ArticlesFilter
 from .forms import NewForm
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from .tasks import hello, send_mail_every_week, send_mail_post_save
 
 
 class CategoryList(LoginRequiredMixin, ListView):
@@ -132,6 +134,7 @@ def create_news(request):
                 categoryType = form.save(commit=False)
                 categoryType.categoryType = 'NW'
                 categoryType.save()
+                '''
                 if current_user in users:
                     send_mail(
                         subject=f'Hello, {current_user.username} . New article in your favorite section!».',
@@ -141,6 +144,8 @@ def create_news(request):
                         from_email='marija.utochkina@yandex.ru',
                         recipient_list=[mail],
                     )
+                '''
+                send_mail_post_save.delay(categoryType.id)
 
                 return HttpResponseRedirect('/news/')
 
@@ -221,6 +226,12 @@ class UserTemplate(LoginRequiredMixin, TemplateView):
         return context
 
 
+class IndexView(View):
+    def get(self, request):
+        # printer.apply_async([10], countdown=10)
+        # hello.delay()
+        send_mail_every_week.delay()
+        return HttpResponse('Hello!')
 
 
 

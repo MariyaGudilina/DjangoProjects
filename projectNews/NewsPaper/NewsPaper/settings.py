@@ -40,7 +40,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # формат даты, которую будет воспринимать наш задачник (вспоминаем модуль по фильтрам)
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
-# если задача не выполняется за 25 секунд, то она автоматически снимается, можете поставить время побольше, но как правило, это сильно бьёт по производительности сервера
+# если задача не выполняется за 25 секунд,
+# то она автоматически снимается, можете поставить время побольше,
+# но как правило, это сильно бьёт по производительности сервера
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -53,7 +55,11 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-
+CELERY_BROKER_URL = 'redis://:K71SjB79QkjMYo8T00ECtgqbCVuynuwV@redis-16799.c282.east-us-mz.azure.cloud.redislabs.com:16799/0'
+CELERY_RESULT_BACKEND = 'redis://:K71SjB79QkjMYo8T00ECtgqbCVuynuwV@redis-16799.c282.east-us-mz.azure.cloud.redislabs.com:16799/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 # Application definition
 
 INSTALLED_APPS = [
@@ -63,11 +69,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news.apps.NewsConfig',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django_filters',
     'sign',
+    'news.apps.NewsConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -108,7 +114,6 @@ TEMPLATES = [
     },
 ]
 
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -119,7 +124,6 @@ AUTHENTICATION_BACKENDS = [
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -129,7 +133,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -149,7 +152,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -160,7 +162,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -178,7 +179,6 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = '/accounts/login/'
 
-#LOGIN_URL = 'sing/login'
+# LOGIN_URL = 'sing/login'
 
 LOGIN_REDIRECT_URL = '/'
-

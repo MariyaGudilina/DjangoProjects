@@ -12,8 +12,7 @@ from django_apscheduler.models import DjangoJobExecution
 
 from datetime import datetime
 
-#from .models import Category, Post
-from NewsPaper.news.models import Category, Post
+from news.models import Category, Post
 
 logger = logging.getLogger(__name__)
 
