@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import NewsList, PostListSearch, NewDelete, UserTemplate, CategoryList, add_subscribe
 from .views import NewsDetail, create_news, NewUpdate
-
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
    path('', NewsList.as_view(), name='news_list'),

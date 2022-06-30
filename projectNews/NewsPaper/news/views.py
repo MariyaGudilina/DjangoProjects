@@ -20,7 +20,8 @@ from .forms import NewForm
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .tasks import hello, send_mail_every_week, send_mail_post_save
-
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 class CategoryList(LoginRequiredMixin, ListView):
     model = Category
@@ -106,6 +107,17 @@ class NewsDetail(LoginRequiredMixin, DetailView):
     model = Post
     template_name = 'new.html'
     context_object_name = 'new'
+
+    def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта, как ни странно
+        obj = cache.get(f'post-{self.kwargs["pk"]}',
+                        None)  # кэш очень похож на словарь, и метод get действует так же. Он забирает значение по ключу, если его нет, то забирает None.
+
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+
+        return obj
 
 
 # Одна статья
