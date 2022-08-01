@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import NewsList, PostListSearch, NewDelete, UserTemplate, CategoryList, add_subscribe
+from .views import NewsList, PostListSearch, NewDelete, UserTemplate, CategoryList, add_subscribe, Index
 from .views import NewsDetail, create_news, NewUpdate
 from django.views.decorators.cache import cache_page
 
@@ -12,4 +12,5 @@ urlpatterns = [
    path('<int:pk>/edit/', NewUpdate.as_view(), name='new_update'),
    path('<int:pk>/delete/', NewDelete.as_view(), name='new_delete'),
    path('subscribe/<int:pk>/', add_subscribe, name='subscribe'),
+   path('locale/', Index.as_view(), name='locale'),
 ]

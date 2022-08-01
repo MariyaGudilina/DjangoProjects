@@ -23,6 +23,16 @@ from .tasks import hello, send_mail_every_week, send_mail_post_save
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 
+from django.utils.translation import gettext as _
+
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello word')
+
+        return HttpResponse(string)
+
+
 class CategoryList(LoginRequiredMixin, ListView):
     model = Category
     ordering = 'name'

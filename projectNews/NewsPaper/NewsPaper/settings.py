@@ -30,10 +30,11 @@ load_dotenv()
 env_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path=env_path)
 SECRET_KEY = os.getenv("SECRET_KEY")
+
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = 'marija.utochkina@yandex.ru'
-
+LANGUAGE_CODE = 'ru'
 SERVER_EMAIL = 'marija.utochkina@yandex.ru'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -62,6 +63,9 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 # Application definition
 
+USE_I18N = True
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -87,6 +91,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -163,7 +168,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -184,13 +189,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
 
 LOGIN_URL = '/accounts/login/'
 
 # LOGIN_URL = 'sing/login'
 
 LOGIN_REDIRECT_URL = '/'
-
+'''
 LOGGING = {
      'version': 1,
      'disable_existing_loggers': False,
@@ -228,10 +236,10 @@ LOGGING = {
      },
      'handlers': {
          'console': {
-            'level': 'DEBUG',
-             'filters': ['require_debug_true'],
-             'class': 'logging.StreamHandler',
-             'formatter': 'simple'
+                'level': 'DEBUG',
+                'filters': ['require_debug_true'],
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple'
          },
          'console_warning': {
              'level': 'WARNING',
@@ -304,3 +312,6 @@ LOGGING = {
          }
      }
  }
+'''
+
+
