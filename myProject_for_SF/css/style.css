@@ -1,0 +1,143 @@
+.navigation{
+    float: right;
+    height: 100%;
+}
+ 
+.navigation a{
+    height: 100%;
+    display: table;
+    float: left;
+    padding: 0px 20px;
+    background-color: #1ba3d8;
+}
+ 
+.navigation a li{
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 20px;
+    color: rgb(74, 27, 128);
+}
+ 
+.navigation a:hover{
+    background-color: rgb(223, 221, 221);
+    color: #215e86;
+}
+
+#wrapper {
+	max-width: 960px;
+	margin: auto;
+}
+header {
+	padding: 20px 0;
+}
+nav a {
+	text-decoration: none;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	list-style-position: inside;
+	font: 14px 'Oswald', sans-serif;
+	padding: 10px;
+}
+
+.top-menu li {
+	display: inline-block;
+	padding: 10px 30px;
+	margin: 0;
+}
+
+.top-menu li.active {
+	background: #29c5e6;
+	color: rgb(9, 3, 20);
+}
+
+.top-menu a {
+	color: #100e7e;
+}
+
+a:hover{
+    background-color: rgb(223, 221, 221);
+    color: #215e86;
+}
+
+#heading {
+	background: #4cb6d6;
+	margin: 2px 0;
+	padding-left: 20px;
+}
+
+h1 {
+	display: inline-block;
+	color: #1b353d;
+	font: 40px/40px 'Oswald', sans-serif;
+	margin: 0;
+	padding: 0 0px;
+}
+section {
+	margin-left: 0px;
+	padding-bottom: 5px;
+    
+}
+blockquote {
+	margin: 0;
+    background: transparent url(../image/желтые\ цветы.png);
+	padding: 10px 20px;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+}
+
+blockquote p {
+    display: inline-block;
+	padding: 10px 100px;
+	color: #fff;
+	font-style: italic;
+	font-size: 33px;
+	margin: 0;
+}
+
+
+blockquote cite {
+	display: block;
+	font-size: 20px;
+	font-style: normal;
+	color: #1d8ea6;
+	margin: 0;
+	text-align: right;
+}
+
+figure {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+}
+
+figure img {
+	display: block;
+	border: 1px solid rgb(34, 7, 110);
+	outline: 1px solid rgb(34, 7, 110);
+}
+
+figure figcaption {
+	font-size: 16px;
+	font-weight: 200;
+	margin-top: 5px;
+}
+
+figure figcaption span {
+	display: block;
+	font-size: 14px;
+	color: #29c5e6;
+}
+section > figure + figure {
+	margin-left: 22px;
+}
+
+section > figure + figure + figure {
+	margin-left: 22px;
+}
