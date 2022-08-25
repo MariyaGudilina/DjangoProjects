@@ -1,0 +1,36 @@
+// Электрические приборы
+
+class ElectricDevices {
+  constructor(name, power) {
+    this.name = name;
+    this.power = power;
+  }
+  
+  getOnOff(action){
+    if(action == 'ВКЛЮЧЕНО'){
+    console.log(this.name + '- ВКЛЮЧЕНО');
+    } else {console.log(this.name + '- ВЫКЛЮЧЕНО');}
+  }
+}
+
+
+class LightDevices extends ElectricDevices {
+   constructor(name, power, light_power) {
+     super(name, power);
+    this.name = name;
+    this.power = power;
+    this.light_power = light_power;
+  }
+  getLight(){
+    console.log(`Световой мощности этой лампы достаточно для освещения ${Math.floor(this.light_power/150)} кв.м жилой комнаты `);
+  }
+  getPower(){
+    console.log(`Мощность ${this.name} ${this.power} Вт. `);
+  }
+  
+}
+
+const lamp = new LightDevices('Лампа', 9, 2400);
+lamp.getOnOff('ВКЛЮЧЕНО');
+lamp.getLight();
+lamp.getPower();
