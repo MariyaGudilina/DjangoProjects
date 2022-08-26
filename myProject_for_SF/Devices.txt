@@ -1,5 +1,7 @@
 // Электрические приборы
 
+// Электрические приборы
+
 class ElectricDevices {
   constructor(name, power) {
     this.name = name;
@@ -10,6 +12,10 @@ class ElectricDevices {
     if(action == 'ВКЛЮЧЕНО'){
     console.log(this.name + '- ВКЛЮЧЕНО');
     } else {console.log(this.name + '- ВЫКЛЮЧЕНО');}
+  }
+  
+  getPower(){
+    console.log(`Мощность ${this.name} ${this.power} Вт. `);
   }
 }
 
@@ -24,8 +30,17 @@ class LightDevices extends ElectricDevices {
   getLight(){
     console.log(`Световой мощности этой лампы достаточно для освещения ${Math.floor(this.light_power/150)} кв.м жилой комнаты `);
   }
-  getPower(){
-    console.log(`Мощность ${this.name} ${this.power} Вт. `);
+}
+
+class KitchenDevices extends ElectricDevices {
+   constructor(name, power, funct) {
+     super(name, power);
+    this.name = name;
+    this.power = power;
+    this.funct = funct;
+  }
+  getFunct(){
+    console.log(`Функция устройства ${this.funct}`);
   }
   
 }
@@ -34,3 +49,7 @@ const lamp = new LightDevices('Лампа', 9, 2400);
 lamp.getOnOff('ВКЛЮЧЕНО');
 lamp.getLight();
 lamp.getPower();
+const kettle = new KitchenDevices('Чайник', 2000, 'Кипятит воду')
+kettle.getOnOff('#');
+kettle.getPower();
+kettle.getFunct();
