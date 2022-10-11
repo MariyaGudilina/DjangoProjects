@@ -1,12 +1,17 @@
+*{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     text-decoration: none;
+ }
+
 #header {
     position: relative;
-    width: 780px;
+    max-width: 1920px;
     height: 130px;
     background: gray;
 }
-#header h2 {
-    color: #fff;
-}
+
 #header h2 {
     position: absolute;
     top: 65px;
@@ -14,24 +19,13 @@
     margin: 0;
     width: 8em;
     font-size: 15px;
+    color: #fff;
     line-height: 1.33;
     font-weight: bold;
     text-transform: uppercase;
     text-align: right;
 }
 
-h2 {
-    font-size: 1.5em;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-
-div {
-    display: block;
-}
 
 body {
     background: #e0e0e0;
@@ -43,23 +37,6 @@ body {
     font: 11px/1.5 verdana,sans-serif;
 }
 
-body {
-    display: block;
-}
-
-#topbg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 150px;
-    background: rgb(57, 230, 57);
-    opacity: 0.5;
-}
-
-
-
 #main {
     position: relative;
     width: 900px;
@@ -69,16 +46,13 @@ body {
 
 #hdr-overlay {
     background: url(header1.png) top right no-repeat;
-}
-
-#hdr-overlay {
     position: relative;
     top: -15px;
     left: 14px;
-    width: 780px;
+    max-width: 1920px;
     height: 145px;
+  
 }
-
 
 .top-menu{
     position: absolute;
@@ -90,7 +64,6 @@ body {
 	padding: 1px;
 }
 
-
 .top-menu a {
     background-color: rgb(255, 178, 115);
     color: rgb(166, 75, 0);
@@ -98,12 +71,11 @@ body {
 	margin: 1px;
     height: 20px;
     font-size: 10px;
-    line-height: 24px;
+    font-weight: bold ;
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
 }
-
 a:hover{
     background: rgb(166, 75, 0);
     color: rgb(255, 178, 115);
@@ -112,7 +84,7 @@ a:hover{
 #content {
     display: flex;
     justify-content: space-around;
-    width: 780px;
+    max-width: 1920px;
     padding: 1px 0px;
     background: #FFB273;
     color: rgb(27, 8, 8);
@@ -120,40 +92,179 @@ a:hover{
 
 }
 
-#left {
-    background: white;
-    width: 300px;
-    padding: 10px 20px;
-    border-right: 1px dotted #fff;
-}
-#left h3 {
-    margin: 0.5em 0 0.3em;
-    font-size: 18px;
-    font-weight: normal;
+#content .ttl {
+   margin: 0.5em 0 0.3em;
+   color: rgb(255, 116, 0);
+   font-size: 14px;
+   font-weight: bold;
 }
 
+#left {
+    background: white;
+    width: 600px;
+    padding: 10px 20px;
+    margin: 5px 0px 5px 5px;
+    border-right: 1px dotted rgb(37, 35, 35);
+}
+
+
 h3 {
-    display: block;
-    font-size: 1.17em;
+    font-size: 1.3em;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+    color: rgb(205, 0, 116); 
+    text-decoration: underline;
+}
+dd {
+    font-size: 12px;
+    color: rgb(14, 11, 13); 
+    font-weight: bold; 
 }
 
 #right {
     background: white;
-    width: 300px;
-    margin: 0 20px 0 0;
+    width: 600px;
+    margin: 5px 5px 5px 0px;
     padding: 10px 20px;
+}
+#right ul{
+    color: rgb(205, 0, 116);
 }
 
 #footer {
-    width: 780px;
+    max-width: 1920px;
     margin: 3px 0 3px 0;
     padding: 5px 0;
     text-align: center;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
+    background: rgb(230, 103, 175);
+    color: rgb(133, 0, 75);
+    border-color: rgb(205, 0, 116);
+}
+
+p {
+    color:black;
+    font-weight: bold;
+}
+
+.collapsible {
+    background: transparent;
+    color: #008500;
+    cursor: pointer;
+    padding: 3px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-style: normal;
+  }
+
+  .active, .collapsible:hover {
+    background-color: #f8c69e;
+    opacity: 0,5;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: white;
+  }
+
+  @media(max-width: 500px){
+    #content{
+        display: block;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    #left {
+        background: white;
+        width: 98%;
+        margin: 10px 10px 10px 10px;
+    }
+
+    #right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        width: 98%;    
+        margin: 10px 10px 10px 10px;
+    }
+    #content h3 {
+    text-align: center;
+    }
+
+    #left dl{
+        text-align: center;
+    }
+    #content .ttl{
+        font-size: 20px;
+    }
+
+    dd{
+        font-size: 18px; 
+    }
+    #right p{
+        font-size: 18px;
+        text-align: center
+    };
+    
+  }
+/*---------------------------------*/
+#content-hobbi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5em 0 0.3em;
+    background:  #A64B00;
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent url(../image/желтые\ цветы.png) top center no-repeat;  
+}
+
+#content-hobbi h1 {
+	display: inline-block;
+	color:#67E667;
+	font: 20px/20px 'Oswald', sans-serif;
+	margin: 0;
+    padding: 0 0px;
+    text-align: center;
+    z-index: 1;
+
+}
+section {
+    display: block;
+	margin-left: 0px;
+	padding-bottom: 5px;   
+}
+blockquote {
+	margin: 0;
+    padding: 10px 20px;
+	font-family: 'Oswald', sans-serif;
+}
+
+blockquote p {
+    display: inline-block;
+	padding: 10px 100px;
+	color: #992667;
+	font-style: italic;
+	font-size: 20px;
+	margin: 0;
+}
+
+#image-my{
+    display: flex;
+}
+
+figure img {
+	display: block;
+	border: 1px solid #FFB273;
+	outline: 1px solid #FFB273;
 }

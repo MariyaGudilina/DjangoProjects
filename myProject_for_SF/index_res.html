@@ -7,53 +7,86 @@
 	<title>Mariya</title>
 	<link rel="stylesheet" href="css/styleRes.css" type="text/css">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+   <!---- <script src="scripts/collapsibles.js"></script> -->
 </head>
 <body>
-    <div id="topbg"></div>
+    <div id="topbg">
+        
+    </div>
     <div id = "main">
         <div id="header" style="background: rgb(57, 230, 57);">
             <h2>Мария Гудилина</h2>
             <div id="hdr-overlay"></div>
         <div class="top-menu">
-                <a href="index_res.html">ГЛАВНАЯ</a>
-                <a href="html/about.html">Образование</a>
-                <a href="html/about.html">Опыт работы</a>
+                <a href="html/education.html">Образование</a>
+                <a href="html/experience.html">Опыт работы</a>
                 <a href="html/index_SF.html">ХОББИ</a>
         </div>
         </div>       
         <div id="content">
                 <div id="left">
-                        <h3 class="ttl" style="color: rgb(255, 116, 0);">Контактные данные</h3>
-                        <p>
-                            <h4>ДАТА И МЕСТО РОЖДЕНИЯ:</h4>
-                            <h5>24 июня 1977 года, Санкт-Петербург.</h5>
-                            <sh4>ТЕЛЕФОН:</h4>	    
-                            <h5>моб.т. **************</h5>
-                        </p>
+                        <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
                         <dl>
-                            <dt class="ttl" style="color: rgb(255, 116, 0);">АДРЕС:</dt>
+                            <dt class="ttl">ДАТА И МЕСТО РОЖДЕНИЯ:</dt>
+                            <dd>24 июня 1977 года, Санкт-Петербург.</dd>
+                            <dt class="ttl">ТЕЛЕФОН:</dt>
+                            <dd>моб.т. **************</dd>
+                            <dt class="ttl">АДРЕС:</dt>
                             <dd>197371, Санкт-Петербург, *****************</dd>
-                            <dt class="ttl" style="color: rgb(255, 116, 0);">ЭЛЕКТРОННАЯ ПОЧТА:</dt>
+                            <dt class="ttl">ЭЛЕКТРОННАЯ ПОЧТА:</dt>
                             <dd>mariya_gudilina@mail.ru</dd>
                         </dl>    
                 </div>
                 <div id="right">
-                    <h3 class="ttl" style="color: rgb(255, 116, 0);">ЦЕЛЬ:</h3>
+                    <h3>ЦЕЛЬ</h3>
                     <p>
-                        <h4>Инженер - программист СКАДА систем</h4>
+                        <span>Инженер - программист СКАДА систем</span>
                     </p>
-                    <h3 class="ttl" style="color: rgb(255, 116, 0);">СПЕЦИАЛЬНЫЕ ТЕХНИЧЕСКИЕ НАВЫКИ:</h3>
-                    <h4>
-                        Администрирование: UNIX (Linux, QNX), Microsoft SQL Server, Web серверов (Apache), Microsoft Windows Server 2000 (AD, group policy) 
-                        Подключение ЛВС к сети Интернет (шлюзы на основе Linux (iptables, squid)).
-                        Организация и администрирование ЛВС на различных платформах (Windows XP, UNIX, сетевое оборудование Cisco)
-                        Поддержка работы пользователей.
-                        Системное программирование под Unix
-                        Использование системы контроля версий Mercurial 
-                    </h4>    
+                    <h3>СПЕЦИАЛЬНЫЕ ТЕХНИЧЕСКИЕ НАВЫКИ:</h3>
+                    <ul>
+                        <li><button type="button" class="collapsible">Backend</button>
+                            <div class="content">
+                                <p>Pyton, Django, RestAPI</p>
+                            </div>
+                        </li>
+                        <li><button type="button" class="collapsible">Frontend</button>
+                        <div class="content">
+                            <p>Потом напишу</p>
+                        </div>
+                        </li>
+                        <li><button type="button" class="collapsible">Графика</button>
+                        <div class="content">
+                            <p>Потом напишу</p>
+                        </div> 
+                        </li>                      
+                        <li><button type="button" class="collapsible">Администрирование</button>
+                        <div class="content">
+                            <p>Подключение ЛВС к сети Интернет (шлюзы на основе Linux (iptables, squid).
+                               Сетевое оборудование Cisco
+                               Поддержка работы пользователей.
+                               Системное программирование под Unix</p>
+                        </div>
+                       </li>
+                        <li><button type="button" class="collapsible">Документация</button>
+                        <div class="content">
+                            <p> Разработка технической документации
+                                Проведения вебинаров по обучению
+                            </p>
+                        </div>
+                        </li>
+                        <li>
+                            <button type="button" class="collapsible">Другие навыки</button>
+                                <div class="content">
+                                    <p> C, C++, Visual Basic
+                                    Программирование под OS QNX
+                                    </p>
+                                </div>
+                        </li>
+                    </ul>                   
                 </div>
+
         </div> 
-        <div id="footer" style="background: rgb(230, 103, 175); color: rgb(133, 0, 75); border-color: rgb(205, 0, 116);">
+        <div id="footer">
             <p>Posted by: Gudilina Mariya</p>
             <p>Contact information: <a href="mailto:mariya_gudilina@mail.ru">
                 mariya_gudilina@mail.ru</a>.</p>
@@ -63,3 +96,19 @@
 </body>
 </html>
 
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
