@@ -4,6 +4,8 @@ pythonProject/
 .idea/
 project_signup/
 projectD3/
+node_modules/
+.vscode/
 **/__pycache__
 
 
