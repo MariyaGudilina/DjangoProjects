@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mariya</title>
+	<link rel="stylesheet" href="css/styleRes.css" type="text/css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+   <!---- <script src="scripts/collapsibles.js"></script> -->
+</head>
+<body>
+    <div id="topbg">
+        
+    </div>
+    <div id = "main">
+        <div id="header" style="background: rgb(57, 230, 57);">
+          <div id="hdr-box1" class="box"><span>Ответственность</span></div>
+          <div id="hdr-box3" class="box"><span>Oбучаемость</span></div>
+          <div id="hdr-box2" class="box"><span>Творчество</span></div>
+          <div id="hdr-box4" class="box"><span>Внимательность</span></div>
+            <h2>Мария Гудилина</h2>
+            <div id="hdr-overlay"></div>
+        <div class="top-menu">
+                <a href="html/education.html">Образование</a>
+                <a href="html/experience.html">Опыт работы</a>
+                <a href="html/index_SF.html">ХОББИ</a>
+        </div>
+        </div>       
+        <div id="content">
+                <div id="left">
+                        <h3>КОНТАКТНЫЕ ДАННЫЕ</h3>
+                        <dl>
+                            <dt class="ttl">ДАТА И МЕСТО РОЖДЕНИЯ:</dt>
+                            <dd>24 июня 1977 года, Санкт-Петербург.</dd>
+                            <dt class="ttl">ТЕЛЕФОН:</dt>
+                            <dd>моб.т. **************</dd>
+                            <dt class="ttl">АДРЕС:</dt>
+                            <dd>197371, Санкт-Петербург, *****************</dd>
+                            <dt class="ttl">ЭЛЕКТРОННАЯ ПОЧТА:</dt>
+                            <dd>mariya_gudilina@mail.ru</dd>
+                        </dl>    
+                </div>
+                <div id="right">
+                    <h3>ЦЕЛЬ</h3>
+                    <p>
+                        <span>Инженер - программист СКАДА систем</span>
+                    </p>
+                    <h3>СПЕЦИАЛЬНЫЕ ТЕХНИЧЕСКИЕ НАВЫКИ:</h3>
+                    <ul>
+                        <li><button type="button" class="collapsible">Backend</button>
+                            <div class="content">
+                                <p>Pyton, Django, RestAPI</p>
+                            </div>
+                        </li>
+                        <li><button type="button" class="collapsible">Frontend</button>
+                        <div class="content">
+                            <p>Потом напишу</p>
+                        </div>
+                        </li>
+                        <li><button type="button" class="collapsible">Графика</button>
+                        <div class="content">
+                            <p>Потом напишу</p>
+                        </div> 
+                        </li>                      
+                        <li><button type="button" class="collapsible">Администрирование</button>
+                        <div class="content">
+                            <p>Подключение ЛВС к сети Интернет (шлюзы на основе Linux (iptables, squid).
+                               Сетевое оборудование Cisco
+                               Поддержка работы пользователей.
+                               Системное программирование под Unix</p>
+                        </div>
+                       </li>
+                        <li><button type="button" class="collapsible">Документация</button>
+                        <div class="content">
+                            <p> Разработка технической документации <br>
+                                Проведения вебинаров по обучению
+                            </p>
+                        </div>
+                        </li>
+                        <li>
+                            <button type="button" class="collapsible">Другие навыки</button>
+                                <div class="content">
+                                    <p> C, C++, Visual Basic
+                                    Программирование под OS QNX
+                                    </p>
+                                </div>
+                        </li>
+                    </ul>                   
+                </div>
+
+        </div> 
+        <div id="footer">
+            <p>Posted by: Gudilina Mariya</p>
+            <p>Contact information: <a href="mailto:mariya_gudilina@mail.ru">
+                mariya_gudilina@mail.ru</a>.</p>
+        </div>   
+               
+    </div>    
+</body>
+</html>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

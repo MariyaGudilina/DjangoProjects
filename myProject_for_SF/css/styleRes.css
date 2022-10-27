@@ -1,0 +1,480 @@
+*{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     text-decoration: none;
+ }
+
+#header {
+    position: relative;
+    max-width: 1920px;
+    height: 130px;
+    background: rgb(57, 230, 57);
+}
+
+#header .box {
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    border-radius: 50%;
+    border-style:groove;
+    border-color:#FFB273;
+
+}
+#hdr-box1 {
+    left: 15px;
+    top: 10px;
+    background: rgb(0, 204, 0);
+}
+#hdr-box2 {
+    left: 130px;
+    top: 40px;
+    background: rgb(103, 230, 103);
+}
+#hdr-box3 {
+    left: 215px;
+    top: 70px;
+    background: rgb(0, 204, 0);
+}
+#hdr-box4 {
+    left: 300px;
+    top: 100px;
+    background: rgb(103, 230, 103);
+}
+#header .box span{
+    color:#CD0074;
+    font-size: 15px;
+    font-weight: bolder;
+    font-style: italic;
+    text-align: center;
+    padding-left: 25px;
+}
+
+#header h2 {
+    position: absolute;
+    top: 65px;
+    right: 140px;
+    margin: 0;
+    width: 8em;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.33;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+
+body {
+    background: #e0e0e0;
+    color: #333;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font: 11px/1.5 verdana,sans-serif;
+}
+
+#main {
+    position: relative;
+    width: 900px;
+    margin: 0 auto;
+    padding: 13px 0 0 0;
+}
+
+#hdr-overlay {
+    background: url(header1.png) top right no-repeat;
+    position: relative;
+    top: -15px;
+    left: 14px;
+    max-width: 1920px;
+    height: 145px;
+  
+}
+
+.top-menu{
+    position: absolute;
+    bottom:0;
+    background: #E667AF;
+    display: flex;
+    justify-content: flex-start;
+	margin: 0px;
+	padding: 1px;
+}
+
+.top-menu a {
+    background-color: rgb(255, 178, 115);
+    color: rgb(166, 75, 0);
+	padding: 5px;
+	margin: 1px;
+    height: 20px;
+    font-size: 10px;
+    font-weight: bold ;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+a:hover{
+    background: rgb(166, 75, 0);
+    color: rgb(255, 178, 115);
+}
+
+#content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1920px;
+    padding: 1px 0px;
+    background: #FFB273;
+    color: rgb(27, 8, 8);
+    margin: 8px 0 3px 0;
+
+}
+
+#content .ttl {
+   margin: 0.5em 0 0.3em;
+   color: rgb(255, 116, 0);
+   font-size: 14px;
+   font-weight: bold;
+}
+
+#left {
+    background: white;
+    width: 600px;
+    padding: 10px 20px;
+    margin: 5px 0px 5px 5px;
+    border-right: 1px dotted rgb(37, 35, 35);
+}
+
+
+h3 {
+    font-size: 1.3em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: rgb(205, 0, 116); 
+    text-decoration: underline;
+}
+dd {
+    font-size: 12px;
+    color: rgb(14, 11, 13); 
+    font-weight: bold; 
+}
+
+#right {
+    background: white;
+    width: 600px;
+    margin: 5px 5px 5px 0px;
+    padding: 10px 20px;
+}
+#right ul{
+    color: rgb(205, 0, 116);
+}
+
+#footer {
+    max-width: 1920px;
+    margin: 3px 0 3px 0;
+    padding: 5px 0;
+    text-align: center;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: rgb(230, 103, 175);
+    color: rgb(133, 0, 75);
+    border-color: rgb(205, 0, 116);
+}
+
+p {
+    color:black;
+    font-weight: bold;
+}
+
+.collapsible {
+    background: transparent;
+    color: #008500;
+    cursor: pointer;
+    padding: 3px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-style: normal;
+  }
+
+  .active, .collapsible:hover {
+    background-color: #f8c69e;
+    opacity: 0,5;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: white;
+  }
+
+  @media(max-width: 500px){
+    #content{
+        display: block;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    #left {
+        background: white;
+        width: 98%;
+        margin: 10px 10px 10px 10px;
+    }
+
+    #right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        width: 98%;    
+        margin: 10px 10px 10px 10px;
+    }
+    #content h3 {
+    text-align: center;
+    }
+
+    #left dl{
+        text-align: center;
+    }
+    #content .ttl{
+        font-size: 20px;
+    }
+
+    dd{
+        font-size: 18px; 
+    }
+    #right p{
+        font-size: 18px;
+        text-align: center
+    };
+    
+  }
+/*---------------------------------*/
+#content-hobbi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5em 0 0.3em;
+    background:  #A64B00;
+    font-size: 14px;
+    font-weight: bold;
+    background: transparent url(../image/fon_nerovnosti_svet_86951_1024x768.jpg) top center no-repeat;  
+}
+
+#content-hobbi h1 {
+	display: inline-block;
+	color:#FF7400;
+	font: 25px 'Oswald', sans-serif;
+    font-weight: bold;
+	margin: 0;
+    padding: 10 10px; 
+    text-align: center;
+}
+section {
+    display: block;
+	margin-left: 0px;
+	padding-bottom: 5px;   
+}
+blockquote {
+	margin: 0;
+    padding: 10px 20px;
+	font-family: 'Oswald', sans-serif;
+}
+
+blockquote p {
+    display: inline-block;
+	padding: 10px 100px;
+	color: #992667;
+	font-style: italic;
+	font-size: 20px;
+	margin: 0;
+}
+
+#image-my{
+    display: flex;
+}
+
+figure img {
+	display: block;
+	border: 1px solid #FFB273;
+	outline: 1px solid #FFB273;
+}
+
+/*---------------------------------*/
+#one{
+    background: white;
+    width: 98%;
+    margin: 10px 10px 10px 10px;
+
+}
+#one span{
+    background:#67E667;
+    color: #008500;
+    font-weight: bold;
+}
+
+@media(max-width: 500px){
+    #content{
+        display: block;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #one p{   
+     padding-left: 50px;  
+     padding-right: 50px;   
+     margin: 10px 10px 10px 10px;
+    }
+}
+/*---------------------------------*/
+#content-experience{
+    box-sizing: border-box;
+    background: transparent url(../image/fon_nerovnosti_svet_86951_1024x768.jpg) top center no-repeat;  
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* The actual timeline (the vertical ruler) */
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+  }
+  
+  /* Container around content */
+  .container {
+    padding: 1px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+  }
+  
+  /* The circles on the timeline */
+  .container::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: white;
+    border: 4px solid #FF9F55;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  /* Place the container to the left */
+  .left {
+    left: 0;
+  }
+  
+  /* Place the container to the right */
+  .right {
+    left: 50%;
+  }
+  
+  /* Add arrows to the left container (pointing right) */
+  .left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+  }
+  
+  /* Add arrows to the right container (pointing left) */
+  .right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+  
+  /* Fix the circle for containers on the right side */
+  .right::after {
+    left: -16px;
+  }
+  
+  /* The actual content */
+  .work {
+    padding: 10px 10px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+  }
+  .work h3{
+     font-size: 1.3em;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: rgb(205, 0, 116); 
+    text-decoration: underline;
+  }
+  .work h4{
+   color: #67E667; 
+ }
+ .work span{
+    color: #008500; 
+  }
+  
+  
+  /* Media queries - Responsive timeline on screens less than 600px wide */
+  @media screen and (max-width: 600px) {
+    /* Place the timelime to the left */
+    .timeline::after {
+    left: 31px;
+    }
+    
+    /* Full-width containers */
+    .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    }
+    
+    /* Make sure that all arrows are pointing leftwards */
+    .container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+    }
+  
+    /* Make sure all circles are at the same spot */
+    .left::after, .right::after {
+    left: 15px;
+    }
+    
+    /* Make all right containers behave like the left ones */
+    .right {
+    left: 0%;
+    }
+  }
