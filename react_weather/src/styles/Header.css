@@ -1,0 +1,27 @@
+header {
+    margin: 15px;
+    color: rgb(27, 125, 206);
+    background: black;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header .header-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .input-city {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 1px;
+    border: 2px solid rgb(231, 235, 23);
+    border-radius: 10px;
+    background-position: 10px;
+    background-color: black;
+    color: aqua;
+
+}
