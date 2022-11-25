@@ -37,5 +37,9 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "json5": "^2.2.1",
+    "react-yandex-maps": "^4.6.0"
   }
 }

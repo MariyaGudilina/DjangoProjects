@@ -1,0 +1,40 @@
+{
+	"cityData": [
+		{
+			"id": "London",
+			"nameCyr": "Лондон",
+			"lat": 51.5073219,
+            "lon": -0.1276474,
+            "country": "GB"
+		},
+		{
+			"id": "Msk",
+			"nameCyr": "Москва",
+			"lat": 55.7504461,
+            "lon": 37.6174943,
+            "country": "RU"
+		},
+		{
+			"id": "Spb",
+			"nameCyr": "Санкт-Петербург",
+			"lat": 59.961232,
+            "lon": 30.316229,
+            "country": "RU"
+		},
+        {
+			"id": "Paris",
+			"nameCyr": "Париж",
+			"lat": 48.8588897,
+            "lon": 2.3200410217200766,
+            "country": "FR"
+		},
+		{
+			"id": "Prague",
+			"nameCyr": "Прага",
+			"lat": 50.0874654,
+            "lon": 14.4212535,
+            "country": "CZ"
+		}
+
+	]
+}

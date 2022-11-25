@@ -5,6 +5,8 @@ pythonProject/
 project_signup/
 projectD3/
 node_modules/
+evn.tsx
+.DS_Store
 .vscode/
 **/__pycache__
 

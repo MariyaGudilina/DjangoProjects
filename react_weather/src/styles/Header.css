@@ -1,25 +1,33 @@
 header {
     margin: 15px;
-    color: rgb(27, 125, 206);
-    background: black;
-    height: 80px;
+    color: rgb(239, 241, 243);
+    background: #8daeb6;
+    height: auto;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: flex-start;
 }
-
+header img{
+    border: 1px rgb(16, 67, 205);
+}
+.header-main .now{
+    visibility: hidden;
+}
 header .header-main{
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
 
 header .input-city {
     margin-left: 10px;
     margin-right: 10px;
     padding: 1px;
     border: 2px solid rgb(231, 235, 23);
-    border-radius: 10px;
     background-position: 10px;
     background-color: black;
     color: aqua;
