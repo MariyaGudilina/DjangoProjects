@@ -3,7 +3,7 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table';
 import "../styles/WeatherNow.css";
 
-import {appid} from '../evn';
+import {appid} from '../env';
 
 
 function WeatherNow(props){
